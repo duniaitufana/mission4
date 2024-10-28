@@ -1,0 +1,631 @@
+:root{
+    --color-bg: #243642;
+    --color-font: white;
+    --color-task-bg: #629584;
+    --color-task-bg-p: #387478;
+    --color-input-task: #FFF7D1;
+}
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-bg);
+    padding: 1rem 2rem 1rem 2rem;
+    color: var(--color-font);
+}
+
+.navbar h1 {
+    font-size: 3rem;
+}
+.profile {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+}
+.profile h3 {
+    font-weight: 400;
+    font-size: 1.8rem;
+}
+/*
+=====================
+Bagian welcome
+=====================
+*/
+.welcome-user {
+    font-size: 3rem;
+    width: 100%;
+    height: 500px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.welcome-user > div:nth-of-type(2){
+    text-align: center;
+}
+.user {
+    margin: 2rem 0 0 0;
+}
+.time-now {
+     margin:0 0 2rem 0;
+}
+/*
+=====================
+Bagian calender
+=====================
+*/
+.list-calender{
+    width: 100%;
+    overflow: hidden;
+    padding: 2rem 0;
+    background-color: var(--color-input-task);
+  
+}
+.list-calender-div {
+    flex-flow: row nowrap;
+    width: max-content;
+    font-size: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    transform: translateX(0);
+}
+.list-calender-div div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 10%;
+}
+.list-calender-div > div h4 {
+    margin: 1rem 0 .5rem 0;
+}
+/*
+=====================
+Bagian Switch calender
+=====================
+*/
+.switch {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+}
+.switch-list,
+.switch-progress,
+.switch-done{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    justify-content: center;
+    flex: 1 1 20rem;
+    transition: background-color 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.switch-list h4,
+.switch-progress h4,
+.switch-done h4 {
+    font-size: 2rem;
+}
+.switch-list svg,
+.switch-progress svg,
+.switch-done svg{
+    cursor: pointer;
+}
+
+.switch-list svg:hover .switch-list,
+.switch-progress svg:hover .switch-progress,
+.switch-done svg:hover .switch-done{
+    background-color: var(--color-bg);
+}
+/*
+=====================
+Bagian Section add task
+=====================
+*/
+
+.btn-add-task {
+    display: flex;
+    padding: 2rem;
+}
+.btn-add-task div {
+    background-color: var(--color-task-bg);
+    font-size: 1.5rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    color: var(--color-font);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+.section-manage-task,
+.section-edit-task {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: fixed;
+    transform: translate(50%,10%);
+    align-items: center;
+    gap: 2rem;
+    padding: 3rem;
+    height: fit-content;
+    background-color: var(--color-task-bg);
+    border-radius: 2rem;
+    z-index: 3;
+    animation: inputAnimation 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.section-manage-task[data-hide="close"]{
+    display: none;
+}
+.section-manage-task[data-hide="open"]{
+    display: flex;
+    
+}
+.section-manage-task form,
+.section-edit-task form {
+    margin: 0 2rem;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    height: fit-content;
+    align-items: baseline;
+    gap: 2rem;
+    font-size: 1.5rem;
+}
+.section-manage-task-head > h3 {
+    color: var(--color-font);
+    font-size: 2rem;
+    font-weight: 500;
+    padding: 1rem 2rem;
+}
+.div-animation {
+    isolation: isolate;
+    position: absolute;
+    border-radius: 2rem;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+.div-animation > div {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+} 
+.div-animation > div div {
+    position: absolute;
+}
+.div-animation > div > div:nth-of-type(1){
+    width: 40rem;
+    height: 40rem;
+    box-shadow: 8px 7px 5px #24364249;
+    background-color: var(--color-bg);
+    opacity: 50%;
+    inset: 0;
+    transform: translate(-20%,-20%);
+    border-radius: 50%;
+}
+.div-animation > div > div:nth-of-type(2){
+    width: 10rem;
+    height: 10rem;
+    box-shadow: 9px 10px 5px #24364249;
+    background-color: var(--color-bg);
+    opacity: 50%;
+    right: 0;
+    bottom: 0;
+    transform: translate(-20%,-20%);
+    border-radius: 50%;
+}
+
+.input-task {
+    display: flex;
+    flex-direction: column;
+}
+.input-info-task  > label,
+.input-task  > label{
+    color: var(--color-font);
+    margin-top: 2rem;
+    font-weight: 600;
+}
+.input-task  > label span,
+.input-info-task  > label span {
+    color: red;
+    padding-left: 1rem;
+    font-size: 1.3rem;
+}
+input[name="title-task"] {
+    font-family: "Arima", sans-serif;
+    border-radius: .5rem;
+    border: .5px solid rgba(128, 128, 128, 0.356);
+    padding: .5rem;
+}
+.input-task > textarea {
+    font-family: "Arima", sans-serif;
+    resize: none;
+    width: 30dvw;
+    border-radius: 1rem;
+    border: .5px solid rgba(128, 128, 128, 0.356);
+    padding: 1rem .5rem;
+}
+.input-task > textarea:user-valid {
+    border: .8px solid rgb(124, 207, 0);
+}
+.input-task > textarea:user-invalid {
+    border: .8px solid rgb(207, 0, 0);
+}
+.input-info-task {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.input-info-task input,
+select {
+    font-family: "Arima", sans-serif;
+    border-radius: .5rem;
+    border: .5px solid rgba(128, 128, 128, 0.356);
+    padding: .5rem;
+}
+.input-info-task select {
+    background-color: var(--color-task-bg-p);
+    color: var(--color-font);
+}
+.section-manage-task button,
+.section-edit-task button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 2rem;
+    background-color: var(--color-font);
+    border: 1px solid rgba(128, 128, 128, 0.363);
+    border-radius: 1rem;
+    padding: .5rem 1rem .5rem 1rem;
+    cursor: pointer;
+}
+.section-edit-task {
+    display: none;
+}
+
+.remover-bg {
+    display: none;
+    background-color: black;
+    opacity: 80%;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    backdrop-filter: blur(7.2px);
+    top: 0;
+}
+/*
+=====================
+Bagian Task
+=====================
+*/
+
+.main-content {
+    background-color: var(--color-bg);
+    overflow-x: hidden;
+}
+.main-content > div{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 2rem 0;
+    gap: 2rem;
+    transition: transform 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    scroll-behavior: smooth;
+}
+
+.main-content > div > section {
+    padding-top: 5rem;
+    width: 30%;
+}
+.section-list-task-head,
+.section-list-task-progress-head,
+.section-list-task-done-head   {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+}
+.section-list-task-head h3,
+.section-list-task-progress-head h3,
+.section-list-task-done-head h3 {
+    color: var(--color-font);
+    font-size: 2rem;
+    margin: 0rem 0rem 0rem 1rem;
+}
+.section-list-task-head div,
+.section-list-task-progress-head div,
+.section-list-task-done-head div  {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    color: var(--color-font);
+}
+.section-list-task-head > div span,
+.section-list-task-progress-head > div span,
+.section-list-task-done-head > div span {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.section-list-task-head-edit[data-isAvailable="false"]{
+    display: none;
+}
+.section-list-task-head-edit[data-isAvailable="true"]{
+    display: flex;
+}
+.info-null-task,
+.info-null-task-progress,
+.info-null-task-done {
+    padding: 5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: var(--color-font);
+}
+.info-null-task h3,
+.info-null-task-progress h3,
+.info-null-task-done h3 {
+    font-size: 1.6rem;
+}
+.info-null-task p,
+.info-null-task-progress p,
+.info-null-task-done p {
+    font-size: 1.5rem;
+}
+
+/*
+=====================
+Bagian Card Task
+=====================
+*/
+
+.list-task,
+.task-progress,
+.task-done {
+    display: flex;
+    height: max-content;
+    font-size: 1.5rem;
+    margin: 2rem 0;
+    width: 100%;
+} 
+.list-task > div:nth-of-type(2),
+.task-progress> div:nth-of-type(2),
+.task-done > div:nth-of-type(2){
+    width: 100%;
+}
+.list-task > div:nth-of-type(1),
+.task-progress > div:nth-of-type(1),
+.task-done > div:nth-of-type(1){
+    padding: 1rem;
+    margin-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+}
+.list-task:nth-of-type(1) > div > .radio-task,
+.task-progress:nth-of-type(1) > div > .radio-task,
+.task-done:nth-of-type(1) > div > .radio-task  {
+    border-radius: 1rem;
+    outline: 2px solid var(--color-task-bg);
+}
+.list-task:nth-of-type(1) > div > .radio-task > div,
+.task-progress:nth-of-type(1) > div > .radio-task > div,
+.task-done:nth-of-type(1) > div > .radio-task > div{
+    width: 1rem;
+    height: 1rem;
+    margin: .3rem;
+    background-color: var(--color-task-bg);
+    border-radius: 1rem;
+}
+.list-task > div > .radio-task > div,
+.task-progress > div > .radio-task > div,
+.task-done > div > .radio-task > div {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0;
+    background-color: var(--color-task-bg);
+    border-radius: 1rem;
+}
+.list-task > div > .radio-task-line,
+.task-progress > div > .radio-task-line,
+.task-done > div > .radio-task-line {
+    width: .23rem;
+    height: 100%;
+    background-color: var(--color-task-bg);
+}
+
+.list-task > div:nth-of-type(2),
+.task-progress > div:nth-of-type(2),
+.task-done > div:nth-of-type(2) {
+    padding: 1.5rem 1.7rem 1.5rem 1.7rem;
+    background-color: var(--color-task-bg-p);
+    color: var(--color-font);
+    border-radius: 1.5rem;
+}
+
+.list-task > div:nth-of-type(2) > div,
+.task-progress > div:nth-of-type(2) > div,
+.task-done > div:nth-of-type(2) > div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-task > div:nth-of-type(2) > div h4,
+.task-progress > div:nth-of-type(2) > div h4,
+.task-done > div:nth-of-type(2) > div h4 {
+    margin: 0;
+}
+.list-task > div:nth-of-type(2) > div.edit-task[data-hide="close"],
+.task-progress > div:nth-of-type(2) > div.edit-task[data-hide="close"],
+.task-done > div:nth-of-type(2) > div.edit-task[data-hide="close"]{
+    display: none;
+}
+.list-task > div:nth-of-type(2) > div.edit-task[data-hide="open"],
+.task-progress > div:nth-of-type(2) > div.edit-task[data-hide="open"],
+.task-done > div:nth-of-type(2) > div.edit-task[data-hide="open"]{
+    display: flex;
+}
+.task-done > div:nth-of-type(2) p {
+    text-decoration: line-through;
+}
+.task-done > div:nth-of-type(2) > div h4 {
+    text-decoration: line-through;
+}
+
+.trash-bin,
+.edit-task-icon,
+.done-icon,
+.line-through{
+    cursor: pointer;
+}
+/*
+=====================
+Bagian footer
+=====================
+*/
+footer {
+    display: flex;
+    color: var(--color-font);
+    background-color: var(--color-task-bg);
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    justify-content: center;
+    padding: 2rem;
+}
+/*
+=====================
+Bagian animasi
+=====================
+*/
+
+@keyframes inputAnimation{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width:1000px){
+    .navbar h1 {
+        font-size: 2.5rem;
+    }
+    .main-content > div{
+        justify-content: flex-start;
+    }
+    .main-content > div > section{
+        min-width: 50%;
+    }
+    .switch-list,
+    .switch-done{
+        display: flex;
+    }
+    .section-manage-task,
+    .section-edit-task{
+        top: auto;
+        right: 50%;
+    }
+    .switch-list svg,
+    .switch-progress svg,
+    .switch-done svg{
+        width: 9rem;
+        height: 9rem;
+    }
+    .switch-list h4,
+    .switch-progress h4,
+    .switch-done h4 {
+        font-size: 1.8rem;
+    }
+}
+@media screen and (max-width:740px){
+    .main-content > div > section{
+        min-width: 100%;
+    }
+    .list-calender-div {
+        flex-flow: row nowrap;
+        width: max-content;
+        font-size: 1.5rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        transform: translateX(0);
+    }
+    .switch-progress{
+        display: flex;
+    }
+    .switch-list svg,
+    .switch-progress svg,
+    .switch-done svg{
+        width: 8rem;
+        height: 8rem;
+    }
+    .switch-list h4,
+    .switch-progress h4,
+    .switch-done h4 {
+        font-size: 1.7rem;
+    }
+    
+}
+
+@media screen and (max-width:450px){
+    .navbar h1 {
+        font-size: 2rem;
+    }
+    .profile h3 {
+        font-size: 1.5rem;
+    }
+    .welcome-user {
+        font-size: 2.3rem;
+    }
+    .input-task{
+        width: max-content;
+    }
+    .section-manage-task,
+    .section-edit-task{
+        padding: 2rem 0;
+        width: 75%;
+    }
+    .section-manage-task-head h3{
+        font-size: 1.7rem;
+        margin: 0;
+    }
+    .section-manage-task form,
+    .section-edit-task form {
+        flex-direction: column;
+        align-items: center;
+    }
+    .input-info-task  > input,
+    .input-info-task  > label,
+    .input-task  > input,
+    .input-task  > textarea,
+    .input-task  > label{
+        width: 24rem;
+        font-size: 1.3rem;
+    }
+    .switch-list svg,
+    .switch-progress svg,
+    .switch-done svg{
+        width: 6rem;
+        height: 6rem;
+    }
+    .switch-list h4,
+    .switch-progress h4,
+    .switch-done h4 {
+        font-size: 1.4rem;
+    }
+    .info-null-task svg,
+    .info-null-task-progress svg,
+    .info-null-task-done svg {
+    width: 7.8rem;
+    height: 7.8rem;
+}
+}

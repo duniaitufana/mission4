@@ -548,7 +548,7 @@ Bagian animasi
 }
 @media screen and (max-width:740px){
     .main-content > div > section{
-        min-width: 100%;
+        min-width: 95%;
     }
     .list-calender-div {
         flex-flow: row nowrap;

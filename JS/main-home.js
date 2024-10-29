@@ -41,8 +41,8 @@ const listCalender_ = document.querySelector('.list-calender');
 
 textArea.value = "";
 getSVGInSwitchEl[0].style.borderBottom = ".6rem solid #387478";
-
-const now = String(new Date()).split(" ");
+const now = new Date();
+valueDate.setAttribute("value",`${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`);
 
 function validationTime(getDataTime) {
     const lowtimeValue = getDataTime.find(data=>{
@@ -573,10 +573,10 @@ function warnResizeCalender(){
 }
 
 btnAddTask.addEventListener("click",()=> {
+    
     if (sectionManageTask.dataset.hide === "close") {
         sectionManageTask.dataset.hide = "open";
         removerBg.style.display = "block";
-        valueDate.setAttribute("value",`${now[3]}-${now[1]}-${now[2]}`);
     } else {
         sectionManageTask.dataset.hide = "close";
     }
@@ -584,6 +584,7 @@ btnAddTask.addEventListener("click",()=> {
 
 btnSubmitTask.addEventListener("click",()=> {
     const listTask = document.querySelectorAll('.list-task');
+
     if (listTask.length <= 0) {
         newValidationInput();
         validationBtnEditisAvailable();

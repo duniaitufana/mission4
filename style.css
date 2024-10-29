@@ -151,6 +151,7 @@ Bagian Section add task
     gap: 2rem;
     padding: 3rem;
     height: fit-content;
+    width: 50%;
     background-color: var(--color-task-bg);
     border-radius: 2rem;
     z-index: 3;
@@ -533,7 +534,9 @@ Bagian animasi
     .section-edit-task{
         top: auto;
         right: 50%;
+        width: 70%;
     }
+
     .switch-list svg,
     .switch-progress svg,
     .switch-done svg{
@@ -546,9 +549,31 @@ Bagian animasi
         font-size: 1.8rem;
     }
 }
+@media screen and (max-width:850px) {
+    .section-manage-task,
+    .section-edit-task{
+        width: 80%;
+    }
+    .section-manage-task form,
+    .section-edit-task form{
+        flex-direction: column;
+    }
+    .input-info-task  > input,
+    .input-info-task  > label,
+    .input-task  > input,
+    .input-task  > textarea,
+    .input-task  > label{
+        width: 30rem;
+        font-size: 1.3rem;
+    }
+}
 @media screen and (max-width:740px){
     .main-content > div > section{
         min-width: 95%;
+    }
+    .section-manage-task,
+    .section-edit-task{
+        
     }
     .list-calender-div {
         flex-flow: row nowrap;
